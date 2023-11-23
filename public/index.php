@@ -2,7 +2,6 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-//namespace App;
 use App\Converter;
 use App\Main;
 use App\Formatter;
@@ -12,7 +11,7 @@ $converter = new Converter(new Parser());
 $main = new Main();
 $formatter = new Formatter();
 
-$xmlString = file_get_contents('hotel_prices.xml');
+$xmlString = file_get_contents(__DIR__ . '/hotel_prices.xml');
 if ($xmlString === false) {
     throw new RuntimeException('Could not parse XML file');
 }
@@ -21,7 +20,7 @@ $json = json_encode($converted);
 if ($json === false) {
     throw new RuntimeException('Could not encode XML file');
 }
-echo $json;
+echo $json . PHP_EOL;
 
 $reservationDto = $main->getCheapestRoom($json, '2022-08-24', '2022-08-26');
 echo $formatter->format($reservationDto);
