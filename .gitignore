@@ -1,0 +1,13 @@
+# Ignore vendor files
+vendor/
+
+# Ignore generated files
+*.log
+*.sql
+*.tmp
+/.php-cs-fixer.cache
+/.phpunit.result.cache
+/package.xml
+/phpstan.neon
+/psalm.xml
+.idea
