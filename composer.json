@@ -33,6 +33,7 @@
       "fix": "phpcbf --extensions=php --standard=PSR12 -v ./src",
       "mess-detector": "phpmd src text cleancode",
       "analysis": "phpstan analyse src --level 7",
+      "export": "git archive --format=tar --output=sasa-kocic.tar HEAD",
       "check": "phpcs --colors -p --standard=PSR12 -s --encoding=utf-8 -n --exclude=Generic.Files.LineLength src/"
     }
 }
