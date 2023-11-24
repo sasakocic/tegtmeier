@@ -4,14 +4,15 @@ namespace App;
 
 class Main
 {
-    public function getCheapestRoom(string $json, string $checkin, string $checkout): ReservationDto
+    public function getCheapestRoom(string $json, string $checkin, string $checkout)
+    : ReservationDto
     {
         $array = json_decode($json, true);
         $prices = [];
         $sum = [];
         foreach ($array as $day => $data) {
-            foreach ($data['rooms'] as $room => $price) {
-                if ($checkin <= $day && $day < $checkout) {
+            if ($checkin <= $day && $day < $checkout) {
+                foreach ($data['rooms'] as $room => $price) {
                     $prices[$room][] = $price;
                     if (!array_key_exists($room, $sum)) {
                         $sum[$room] = 0;
