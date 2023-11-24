@@ -23,6 +23,8 @@
     "scripts": {
       "task": "php -dxdebug.client_host=127.0.0.1 -dxdebug.client_port=9003 -dxdebug.discover_client_host=false -dxdebug.idekey='PHPSTORM' -dxdebug.mode=coverage,debug public/index.php",
       "tests": "./vendor/bin/phpunit --testdox tests",
+      "coverage": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --testdox --coverage-text --coverage-clover=build/logs/clover.xml --whitelist src tests",
+      "pdepend": "pdepend --summary-xml=./build/logs/summary.xml --jdepend-chart=./build/logs/jdepend.svg --overview-pyramid=./build/logs/pyramid.svg src",
       "security": "local-php-security-checker --path=./composer.lock",
       "phpcbf": "phpcbf --extensions=php --standard=PSR12 -v ./src",
       "phpmd": "phpmd src text cleancode",
