@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class MainTest extends TestCase
 {
-    public function testGetCheapestRoom(): void
+    public function testGetCheapestRoomWorksForGivenExample(): void
     {
         $main = new Main();
         $json = $this->provideJsonString();
@@ -17,6 +17,26 @@ class MainTest extends TestCase
         $this->assertEquals('room_1', $reservation->room);
         $this->assertEquals(2, $reservation->nights);
         $this->assertEquals([131.87, 119.44], $reservation->prices);
+    }
+
+    public function testGetCheapestRoomReturnsEmptyRoomWhenSameDate(): void
+    {
+        $main = new Main();
+        $json = $this->provideJsonString();
+        $checkin = '2022-08-24';
+        $checkout = '2022-08-24';
+        $reservation = $main->getCheapestRoom($json, $checkin, $checkout);
+        $this->assertEquals('', $reservation->room);
+    }
+
+    public function testGetCheapestRoomReturnsEmptyRoomWhenCheckoutBeforeCheckin(): void
+    {
+        $main = new Main();
+        $json = $this->provideJsonString();
+        $checkin = '2022-08-24';
+        $checkout = '2022-08-23';
+        $reservation = $main->getCheapestRoom($json, $checkin, $checkout);
+        $this->assertEquals('', $reservation->room);
     }
 
     public function provideJsonString(): string

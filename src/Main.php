@@ -20,6 +20,15 @@ class Main
                 }
             }
         }
+        if (empty($sum)) {
+            return new ReservationDto(
+                $checkin,
+                $checkout,
+                '',
+                [],
+                0
+            );
+        }
         $min_room = array_search(min($sum), $sum);
 
         return new ReservationDto(

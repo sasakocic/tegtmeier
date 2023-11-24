@@ -18,7 +18,7 @@ if ($xmlString === false) {
 $converted = $converter->convert($xmlString);
 $json = json_encode($converted);
 if ($json === false) {
-    throw new RuntimeException('Could not encode XML file');
+    throw new RuntimeException('Could not encode JSON output');
 }
 echo $json . PHP_EOL;
 
