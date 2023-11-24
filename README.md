@@ -73,6 +73,7 @@ Beispiel: Anreise 24.8.2022, Abreise 26.8.2022 (also 2 Nächte) in Zimmer 'room_
 - Testing  
   ```bash
   composer run tests
+  composer run coverage
   ```
 - Install (optionally) tools for quality checking
   ```bash
@@ -87,12 +88,16 @@ Beispiel: Anreise 24.8.2022, Abreise 26.8.2022 (also 2 Nächte) in Zimmer 'room_
   chmod +x /usr/local/bin/local-php-security-checker
   xattr -cr /usr/local/bin/local-php-security-checker
   local-php-security-checker --path=./composer.lock
+  wget https://github.com/pdepend/pdepend/releases/download/2.15.1/pdepend.phar
+  mv pdepend.phar /usr/local/bin/pdepend
+  chmod +x /usr/local/bin/pdepend
   ```
 - Usage
   ```bash
   composer run task
-  php -dxdebug.client_host=127.0.0.1 -dxdebug.client_port=9001 -dxdebug.discover_client_host=false -dxdebug.idekey="PHPSTORM" -dxdebug.mode=coverage,debug src/index.php
-  php -S 0.0.0.0:8000 src/index.php
+  php public/index.php # composer run task
+  php -dxdebug.client_host=127.0.0.1 -dxdebug.client_port=9001 -dxdebug.discover_client_host=false -dxdebug.idekey="PHPSTORM" -dxdebug.mode=coverage,debug public/index.php # composer run xdebug
+  php -S 0.0.0.0:8000 public/index.php # composer run webserver
   ```
 - Export
   ```bash
