@@ -4,7 +4,8 @@
     "require": {
         "php": "^7.4",
         "ext-simplexml": "*",
-        "ext-json": "*"
+        "ext-json": "*",
+      "ext-libxml": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.6",
@@ -21,13 +22,16 @@
         }
     },
     "scripts": {
-      "task": "php -dxdebug.client_host=127.0.0.1 -dxdebug.client_port=9003 -dxdebug.discover_client_host=false -dxdebug.idekey='PHPSTORM' -dxdebug.mode=coverage,debug public/index.php",
+      "task": "php public/index.php",
+      "xdebug": "php -dxdebug.client_host=127.0.0.1 -dxdebug.client_port=9003 -dxdebug.discover_client_host=false -dxdebug.idekey='PHPSTORM' -dxdebug.mode=coverage,debug public/index.php",
       "tests": "./vendor/bin/phpunit --testdox tests",
+      "webserver": "php -S 0.0.0.0:80 public/index.php",
       "coverage": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --testdox --coverage-text --coverage-clover=build/logs/clover.xml --whitelist src tests",
-      "pdepend": "pdepend --summary-xml=./build/logs/summary.xml --jdepend-chart=./build/logs/jdepend.svg --overview-pyramid=./build/logs/pyramid.svg src",
-      "security": "local-php-security-checker --path=./composer.lock",
-      "phpcbf": "phpcbf --extensions=php --standard=PSR12 -v ./src",
-      "phpmd": "phpmd src text cleancode",
-      "phpcs": "phpcs --colors -p --standard=PSR12 --encoding=utf-8 -n src/"
+      "php-depend": "pdepend --summary-xml=./build/logs/summary.xml --jdepend-chart=./build/logs/jdepend.svg --overview-pyramid=./build/logs/pyramid.svg src",
+      "security-checker": "local-php-security-checker --path=./composer.lock",
+      "code-beautifier": "phpcbf --extensions=php --standard=PSR12 -v ./src",
+      "mess-detector": "phpmd src text cleancode",
+      "analyse": "phpstan analyse src --level 7",
+      "code-sniffer": "phpcs --colors -p --standard=PSR12 --encoding=utf-8 -n src/"
     }
 }
