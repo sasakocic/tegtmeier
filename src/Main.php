@@ -14,8 +14,7 @@ class Main
      * @param string $checkout
      * @return ReservationDto
      */
-    public function getCheapestRoom(string $json, string $checkin, string $checkout)
-    : ReservationDto
+    public function getCheapestRoom(string $json, string $checkin, string $checkout): ReservationDto
     {
         $array = json_decode($json, true);
         $prices = [];

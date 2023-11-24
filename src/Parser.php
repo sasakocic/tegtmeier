@@ -2,6 +2,8 @@
 
 namespace App;
 
+use InvalidArgumentException;
+
 /**
  * Class Parser
  * @package App
@@ -18,7 +20,7 @@ class Parser
         $xml = simplexml_load_string($xml_string, "SimpleXMLElement", LIBXML_ERR_NONE);
         if ($xml === false) {
             $error = 'Could not parse XML string: ' . $xml_string;
-            throw new \InvalidArgumentException($error);
+            throw new InvalidArgumentException($error);
         }
         $entries = [];
         foreach ($xml->entry as $entry) {
