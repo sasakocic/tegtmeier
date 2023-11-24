@@ -4,8 +4,16 @@ namespace App;
 
 use App\ReservationDto;
 
+/**
+ * Class Formatter
+ * @package App
+ */
 class Formatter
 {
+    /**
+     * @param \App\ReservationDto $dto
+     * @return string
+     */
     public function format(ReservationDto $dto): string
     {
         if ($dto->room != '') {

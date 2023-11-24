@@ -2,8 +2,18 @@
 
 namespace App;
 
+/**
+ * Class Main
+ * @package App
+ */
 class Main
 {
+    /**
+     * @param string $json
+     * @param string $checkin
+     * @param string $checkout
+     * @return ReservationDto
+     */
     public function getCheapestRoom(string $json, string $checkin, string $checkout)
     : ReservationDto
     {

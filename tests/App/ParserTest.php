@@ -21,8 +21,15 @@ class ParserTest extends TestCase
         $this->assertEquals(131.87, $entry->price);
     }
 
+    public function testParseThrowsExceptionForInvalidXML(): void
+    {
+        $parser = new Parser();
+        $this->expectException('InvalidArgumentException');
+        $parser->parse('This is not a valid XML tag');
+    }
+
     /**
-     * @return array
+     * @return array<int, array<int, string>>.
      */
     public function provideXmlString(): array
     {
