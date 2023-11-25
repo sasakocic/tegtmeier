@@ -19,10 +19,11 @@ class Main
     public function getCheapestRoom(string $json, string $checkin, string $checkout): ReservationDto
     {
         $array = json_decode($json, true);
-        if (json_last_error()!== JSON_ERROR_NONE) {
+        if (json_last_error() !== JSON_ERROR_NONE) {
             throw new RuntimeException('Could not decode JSON');
         }
         $prices = [];
+        $sum = [];
         foreach ($array as $day => $data) {
             if ($checkin <= $day && $day < $checkout) {
                 foreach ($data['rooms'] as $room => $price) {
