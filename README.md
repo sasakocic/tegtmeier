@@ -91,6 +91,9 @@ Beispiel: Anreise 24.8.2022, Abreise 26.8.2022 (also 2 Nächte) in Zimmer 'room_
   wget https://github.com/pdepend/pdepend/releases/download/2.15.1/pdepend.phar
   mv pdepend.phar /usr/local/bin/pdepend
   chmod +x /usr/local/bin/pdepend
+  wget https://github.com/phpmetrics/PhpMetrics/releases/download/v2.8.1/phpmetrics.phar
+  mv phpmetrics.phar /usr/local/bin/phpmetrics
+  chmod +x /usr/local/bin/phpmetrics
   ```
 - Usage
   ```bash
@@ -98,6 +101,9 @@ Beispiel: Anreise 24.8.2022, Abreise 26.8.2022 (also 2 Nächte) in Zimmer 'room_
   php public/index.php # composer run task
   php -dxdebug.client_host=127.0.0.1 -dxdebug.client_port=9001 -dxdebug.discover_client_host=false -dxdebug.idekey="PHPSTORM" -dxdebug.mode=coverage,debug public/index.php # composer run xdebug
   php -S 0.0.0.0:8000 public/index.php # composer run webserver
+  docker build -t registry.itspektar.com/tegtmeier .
+  docker push registry.itspektar.com/tegtmeier
+  docker run --rm -it registry.itspektar.com/tegtmeier
   ```
 - Export
   ```bash
