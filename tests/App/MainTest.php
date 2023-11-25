@@ -19,6 +19,26 @@ class MainTest extends TestCase
         $this->assertEquals([131.87, 119.44], $reservation->prices);
     }
 
+    public function testGetCheapestRoomWorksWithNoData(): void
+    {
+        $main = new Main();
+        $json = '[]';
+        $checkin = '2022-08-24';
+        $checkout = '2022-08-26';
+        $reservation = $main->getCheapestRoom($json, $checkin, $checkout);
+        $this->assertEquals('', $reservation->room);
+    }
+
+    public function testGetCheapestRoomThrowsExceptionForInvalidJson(): void
+    {
+        $main = new Main();
+        $this->expectException('RuntimeException');
+        $json = '';
+        $checkin = '2022-08-24';
+        $checkout = '2022-08-26';
+        $main->getCheapestRoom($json, $checkin, $checkout);
+    }
+
     public function testGetCheapestRoomReturnsEmptyRoomWhenSameDate(): void
     {
         $main = new Main();

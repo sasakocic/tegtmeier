@@ -21,7 +21,7 @@ class ParserTest extends TestCase
         $this->assertEquals(131.87, $entry->price);
     }
 
-    public function testParseThrowsExceptionForInvalidXML(): void
+    public function testParseThrowsExceptionForInvalidXml(): void
     {
         $parser = new Parser();
         $this->expectException('InvalidArgumentException');

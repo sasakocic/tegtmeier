@@ -2,6 +2,8 @@
 
 namespace App;
 
+use RuntimeException;
+
 /**
  * Class Main
  * @package App
@@ -17,15 +19,17 @@ class Main
     public function getCheapestRoom(string $json, string $checkin, string $checkout): ReservationDto
     {
         $array = json_decode($json, true);
+        if (json_last_error()!== JSON_ERROR_NONE) {
+            throw new RuntimeException('Could not decode JSON');
+        }
         $prices = [];
-        $sum = [];
         foreach ($array as $day => $data) {
             if ($checkin <= $day && $day < $checkout) {
                 foreach ($data['rooms'] as $room => $price) {
+                    $prices[$room] = $prices[$room] ?? []; // Initialize the array if it doesn't exist
                     $prices[$room][] = $price;
-                    if (!array_key_exists($room, $sum)) {
-                        $sum[$room] = 0;
-                    }
+
+                    $sum[$room] = $sum[$room] ?? 0; // Initialize the sum to 0 if it doesn't exist
                     $sum[$room] += $price;
                 }
             }
