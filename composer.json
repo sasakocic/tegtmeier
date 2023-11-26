@@ -2,13 +2,9 @@
     "name": "tegtmeier/hotel-prices",
     "description": "PHP-Library zum Laden und Berechnen von Hotelpreisen",
     "require": {
-        "php": "^7.4",
         "ext-simplexml": "*",
         "ext-json": "*",
         "ext-libxml": "*"
-    },
-    "require-dev": {
-        "sensiolabs/security-checker": "^6.0"
     },
     "autoload": {
         "psr-4": {
