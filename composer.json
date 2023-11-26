@@ -19,10 +19,10 @@
     "scripts": {
       "task": "php public/index.php",
       "xdebug": "php -dxdebug.client_host=127.0.0.1 -dxdebug.client_port=9003 -dxdebug.discover_client_host=false -dxdebug.idekey='PHPSTORM' -dxdebug.mode=coverage,debug public/index.php",
-      "tests": "./scripts/phpunit --testdox --colors --no-interaction --log-junit ./build/logs/junit.xml tests",
-      "failed": "./scripts/phpunit --testdox --colors --no-interaction --order-by=defects --stop-on-failure tests",
+      "tests": "./vendor/bin/phpunit --testdox --colors --no-interaction --log-junit ./build/logs/junit.xml tests",
+      "failed": "./vendor/bin/phpunit --testdox --colors --no-interaction --order-by=defects --stop-on-failure tests",
       "webserver": "php -S 0.0.0.0:80 public/index.php",
-      "coverage": "XDEBUG_MODE=coverage ./scripts/phpunit --testdox --coverage-text --coverage-clover=build/logs/coverage.xml --coverage-html build/coverage --whitelist src --colors --log-junit ./build/logs/junit.xml tests",
+      "coverage": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --testdox --coverage-text --coverage-clover=build/logs/coverage.xml --coverage-html build/coverage --whitelist src --colors --log-junit ./build/logs/junit.xml tests",
       "php-depend": "./scripts/pdepend --summary-xml=./build/logs/summary.xml --jdepend-chart=./build/logs/jdepend.svg --overview-pyramid=./build/logs/pyramid.svg src",
       "security-checker": "./scripts/local-php-security-checker --path=./composer.lock",
       "fix": "./scripts/phpcbf --extensions=php --standard=PSR12 -v ./src",
@@ -31,5 +31,8 @@
       "analysis": "./scripts/phpstan analyse src --level 7",
       "export": "git archive --format=tar --output=sasa-kocic.tar HEAD",
       "check": "./scripts/phpcs --colors -p --standard=PSR12 -s --encoding=utf-8 -n --exclude=Generic.Files.LineLength src/"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.6"
     }
 }
