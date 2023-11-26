@@ -24,7 +24,7 @@
       "webserver": "php -S 0.0.0.0:80 public/index.php",
       "coverage": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --testdox --coverage-text --coverage-clover=build/logs/coverage.xml --coverage-html build/coverage --whitelist src --colors --log-junit ./build/logs/junit.xml tests",
       "php-depend": "./scripts/pdepend --summary-xml=./build/logs/summary.xml --jdepend-chart=./build/logs/jdepend.svg --overview-pyramid=./build/logs/pyramid.svg src",
-      "security-checker": "./scripts/local-php-security-checker --path=./composer.lock",
+      "security-checker": "local-php-security-checker --path=./composer.lock",
       "fix": "./scripts/phpcbf --extensions=php --standard=PSR12 -v ./src",
       "mess-detector": "./scripts/phpmd src text cleancode",
       "metrics": "./scripts/phpmetrics --report-html=./build/report --composer=false --junit=./build/logs/junit.xml src/",

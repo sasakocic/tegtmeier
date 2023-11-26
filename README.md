@@ -127,6 +127,10 @@ php -S 0.0.0.0:8000 public/index.php # composer run webserver
 docker build -t registry.itspektar.com/tegtmeier .
 docker push registry.itspektar.com/tegtmeier
 docker run --rm -it registry.itspektar.com/tegtmeier
+# or build it multiplatform if we want to run on MacOS and Linux for example
+docker buildx build --load --platform linux/amd64 -t registry.itspektar.com/tegtmeier .
+docker buildx build --load --platform linux/arm64 -t registry.itspektar.com/tegtmeier .
+docker push registry.itspektar.com/tegtmeier
 ```
 
 ## Export
