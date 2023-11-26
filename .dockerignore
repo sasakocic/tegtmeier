@@ -1,0 +1,9 @@
+# Ignore generated files
+*.log
+*.sql
+*.tmp
+/.php-cs-fixer.cache
+/.phpunit.result.cache
+.idea
+build/
+*.tar
