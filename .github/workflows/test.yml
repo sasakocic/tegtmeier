@@ -1,0 +1,59 @@
+name: Tester
+
+on: push
+
+jobs:
+  test:
+    name: Test code base
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php:
+          - '7.4'
+          - '8.0'
+    steps:
+      - name: Prepare PHP Environment
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mysql, apcu, mbstring, xml, json, soap, intl, curl, gd, gmp, gettext, zip, yaml
+          ini-values: pcov.directory=.
+          coverage: pcov
+        env:
+          COMPOSER_TOKEN: ${{ secrets.PHP_SERVICES_TOKEN }}
+
+      # Checks out a copy of your repository on the ubuntu-latest machine
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Validate composer.json and composer.lock
+        run: ./scripts/composer validate
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache Composer packages
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Composer install
+        id: composer-install
+        run: ./scripts/composer --quiet install
+
+      - name: Run phpcs
+        id: run-phpcs
+        run: ./scripts/composer run check
+
+      - name: Run tests
+        id: run-tests
+        run: ./scripts/composer run coverage
+
+        env:
+          DEFAULT_BRANCH: master
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

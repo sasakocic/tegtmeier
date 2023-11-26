@@ -1,5 +1,7 @@
 FROM php:7.4-fpm
 
+ARG TARGETPLATFORM=linux/amd64
+
 RUN apt-get update && apt-get install -y libxml2-dev zlib1g-dev libpq-dev unzip
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
@@ -22,6 +24,8 @@ RUN wget --quiet -O /usr/local/bin/pdepend https://github.com/pdepend/pdepend/re
  && chmod +x /usr/local/bin/pdepend
 RUN wget --quiet -O /usr/local/bin/phpmetrics https://github.com/phpmetrics/PhpMetrics/releases/download/v2.8.1/phpmetrics.phar \
  && chmod +x /usr/local/bin/phpmetrics
+RUN TARGET_PLATFORM=$(echo ${TARGETPLATFORM} | tr '/' '_') && wget --quiet -O /usr/local/bin/local-php-security-checker https://github.com/fabpot/local-php-security-checker/releases/download/v2.0.6/local-php-security-checker_2.0.6_${TARGET_PLATFORM} \
+&& chmod +x /usr/local/bin/local-php-security-checker
 RUN mv composer.phar /usr/local/bin/composer
 
 COPY composer.json composer.lock ./

@@ -1,0 +1,2 @@
+#!/opt/homebrew/opt/php/bin/php
+<?php require '/opt/homebrew/Cellar/php-cs-fixer/3.39.0/libexec/php-cs-fixer.phar';
