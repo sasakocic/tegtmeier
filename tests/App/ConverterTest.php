@@ -4,7 +4,6 @@ namespace Test\App;
 
 use App\Parser;
 use App\Converter;
-use App\EntryDto;
 use PHPUnit\Framework\TestCase;
 
 class ConverterTest extends TestCase
@@ -24,7 +23,7 @@ class ConverterTest extends TestCase
     }
 
     /**
-     * @return array
+     * @return array<array<String>>
      */
     public function provideXmlString(): array
     {
