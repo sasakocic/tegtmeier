@@ -33,6 +33,6 @@
       "check": "./scripts/phpcs --colors -p --standard=PSR12 -s --encoding=utf-8 -n --exclude=Generic.Files.LineLength src/"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.6"
+        "phpunit/phpunit": "^12.5"
     }
 }
